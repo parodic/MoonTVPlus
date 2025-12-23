@@ -1,6 +1,6 @@
 name: 项目提问
 description: 对项目功能有疑问
-title: "对项目功能有疑问"
+title: ''
 labels: ["question"]
 body:
   - type: checkboxes
