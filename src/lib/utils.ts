@@ -308,6 +308,14 @@ export async function getVideoResolutionFromM3u8(
         }
       });
 
+      // 为分片请求添加时间戳参数破除浏览器缓存
+      hls.config.xhrSetup = function(xhr: XMLHttpRequest, url: string) {
+        const urlWithTimestamp = url.includes('?')
+          ? `${url}&_t=${Date.now()}`
+          : `${url}?_t=${Date.now()}`;
+        xhr.open('GET', urlWithTimestamp, true);
+      };
+
       hls.loadSource(m3u8Url);
       hls.attachMedia(video);
 
